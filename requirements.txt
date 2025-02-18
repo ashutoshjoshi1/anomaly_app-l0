@@ -4,4 +4,3 @@ numpy==2.2.3
 pandas==2.2.3
 streamlit==1.42.1
 tensorflow==2.18.0
-
