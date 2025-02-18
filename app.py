@@ -7,11 +7,13 @@ from tensorflow.keras import models
 import matplotlib.pyplot as plt
 import io
 import base64
+from tensorflow.python import pywrap_tensorflow
+import tensorflow as tf
 
 app = Flask(__name__)
 
 # Load the trained model and scaler
-loaded_autoencoder = models.load_model('autoencoder_model.h5', 
+loaded_autoencoder = models.load_model('anomaly_detector_model.h5', 
                                        custom_objects={'mse': tf.keras.losses.MeanSquaredError()})
 scaler = joblib.load('scaler.pkl')
 
