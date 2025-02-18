@@ -1,4 +1,4 @@
-# Streamlit Anomaly Detection App
+# Streamlit Anomaly Detection App with Dependency Fixes
 
 import streamlit as st
 import pandas as pd
@@ -6,15 +6,15 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 from tensorflow.keras import models
-import io
-import base64
 import subprocess
+import sys
 
-# Install dependencies (ensure they are available)
+# Ensure pip and packages are up-to-date
 try:
-    subprocess.run(['pip', 'install', 'tensorflow', 'joblib', 'matplotlib', 'pandas', 'streamlit'], check=True)
+    subprocess.run([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip'], check=True)
+    subprocess.run([sys.executable, '-m', 'pip', 'install', '--force-reinstall', 'pygments', 'markdown-it-py', 'rich'], check=True)
 except Exception as e:
-    st.error(f"Dependency installation failed: {e}")
+    st.error(f"Dependency installation error: {e}")
 
 # Load trained model and scaler
 try:
