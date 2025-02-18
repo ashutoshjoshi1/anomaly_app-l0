@@ -1,3 +1,5 @@
+# Streamlit Anomaly Detection App
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -6,11 +8,21 @@ import matplotlib.pyplot as plt
 from tensorflow.keras import models
 import io
 import base64
+import subprocess
+
+# Install dependencies (ensure they are available)
+try:
+    subprocess.run(['pip', 'install', 'tensorflow', 'joblib', 'matplotlib', 'pandas', 'streamlit'], check=True)
+except Exception as e:
+    st.error(f"Dependency installation failed: {e}")
 
 # Load trained model and scaler
-loaded_autoencoder = models.load_model('anomaly_detector_model.h5', 
-                                       custom_objects={'mse': tf.keras.losses.MeanSquaredError()})
-scaler = joblib.load('scaler.pkl')
+try:
+    loaded_autoencoder = models.load_model('autoencoder_model.h5', 
+                                           custom_objects={'mse': tf.keras.losses.MeanSquaredError()})
+    scaler = joblib.load('scaler.pkl')
+except Exception as e:
+    st.error(f"Error loading model or scaler: {e}")
 
 def process_txt_file(file):
     lines = file.readlines()
