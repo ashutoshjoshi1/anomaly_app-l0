@@ -6,4 +6,5 @@ matplotlib==3.3.4
 oauthlib==3.1.0
 pandas==1.1.5
 tensorflow
+Cython
 gunicorn
